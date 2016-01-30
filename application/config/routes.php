@@ -40,7 +40,27 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
+$route['last'] = "last/Welcome";
+$route['show/(:num)'] = 'first/gimme/3';
 
+$route['^[a-zA-Z]{4}/bingo'] = 'bingo/index';
+
+
+$route['comp(\d){4}/(.*)'] = 'wise/bingo';
+
+//reroutes the url with wildcards lock/*/* to call the method shucks in welcome.php
+$route['lock/(:any)/(:any)'] = 'welcome/shucks';
+
+$route['dunno'] = function() {
+    $source = './data/surprise.jpg'; // an image you provide
+    // set the mime type for that image
+    header("Content-type: image/jpeg");
+    header('Content-Disposition: inline');
+    readfile($source); // dish it
+    die(); // and we don't have to go any further
+};
+//Wildcard for First controller
+$route['(:any)'] = "first/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
